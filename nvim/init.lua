@@ -3,6 +3,7 @@ vim.loader.enable()
 local cmd = vim.cmd
 local opt = vim.o
 
+-- See :h <option> to see what the options do
 --vim heresy
 opt.encoding = "utf-8"
 opt.mouse = "a"
@@ -77,7 +78,7 @@ opt.scrolloff = 10
 opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.g.cursorline_timeout = 0
 
-opt.shortmess:append({ I = true, c = true })
+-- opt.shortmess:append({ I = true, c = true })
 
 opt.exrc = true
 
@@ -178,8 +179,6 @@ vim.api.nvim_create_autocmd("User", {
     vim.opt.spell = false
   end,
 })
-
--- See :h <option> to see what the options do
 
 -- Configure Neovim diagnostic messages
 
