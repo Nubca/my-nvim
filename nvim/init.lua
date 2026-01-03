@@ -127,18 +127,18 @@ opt.listchars = {
   trail = '·',
   tab = '>·'
 }
-vim.api.nvim_create_autocmd({"ModeChanged"}, {
-  pattern = {"*:v", "*:V", "*:\x16"},
-  callback = function()
-    vim.opt.list = true
-  end
-})
-vim.api.nvim_create_autocmd({"ModeChanged"}, {
-  pattern = {"v:n", "V:n", "\x16:n"},
-  callback = function()
-    vim.opt.list = false
-  end
-})
+-- vim.api.nvim_create_autocmd({"ModeChanged"}, {
+--   pattern = {"*:v", "*:V", "*:\x16"},
+--   callback = function()
+--     vim.opt.list = true
+--   end
+-- })
+-- vim.api.nvim_create_autocmd({"ModeChanged"}, {
+--   pattern = {"v:n", "V:n", "\x16:n"},
+--   callback = function()
+--     vim.opt.list = false
+--   end
+-- })
 WK.add({
   { "Q", "<Nop>", { noremap = false } },
 })
