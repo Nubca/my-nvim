@@ -74,6 +74,7 @@ with final.pkgs.lib; let
     # Useful utilities
     nvim-unception # Prevent nested neovim sessions | nvim-unception
     # ^ Useful utilities
+    vim-moonfly-colors
     # libraries that other plugins depend on
     sqlite-lua
     plenary-nvim
