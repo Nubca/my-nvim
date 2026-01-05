@@ -1,4 +1,6 @@
+require ("lz.n")
 vim.loader.enable()
+_G.LZN = require("lz.n")
 
 local cmd = vim.cmd
 local opt = vim.o
@@ -11,7 +13,6 @@ cmd.aunmenu({ "PopUp.How-to\\ disable\\ mouse" })
 cmd.aunmenu({ "PopUp.-1-" })
 
 --indenting
-
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
@@ -32,13 +33,16 @@ opt.cmdheight = 0
 opt.updatetime = 50
 opt.timeout = false
 opt.tm = 1000
+
 opt.hidden = true
 opt.undofile = true
 opt.splitbelow = true
 opt.splitright = true
+
 opt.signcolumn = "yes:2"
 opt.ai = true
 opt.swapfile = false
+
 opt.backup = false
 opt.writebackup = false
 opt.visualbell = false
@@ -53,6 +57,7 @@ opt.cursorline = true
 opt.cursorlineopt = "both"
 opt.cursorcolumn = true
 opt.colorcolumn = "100"
+
 opt.shiftround = true
 opt.showbreak = "↪ "
 opt.wrap = true
@@ -62,24 +67,20 @@ opt.path = vim.o.path .. '**'
 
 opt.lazyredraw = true
 opt.showmatch = true -- Highlight matching parentheses, etc
-
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.colorcolumn = '100'
 
 opt.hlsearch = false
 opt.incsearch = true
-
 opt.spell = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.spelllang = "en_us"
-
 opt.scrolloff = 10
 opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.g.cursorline_timeout = 0
 
 -- opt.shortmess:append({ I = true, c = true })
-
 opt.exrc = true
 
 WK = require("which-key")
@@ -121,27 +122,30 @@ vim.g.indentLine_setConceal = 0
 
 vim.g.cursorline_timeout = 0
 
--- Show spaces when Highlighted
-opt.listchars = {
-  space = '·',
-  trail = '·',
-  tab = '>·'
-}
--- vim.api.nvim_create_autocmd({"ModeChanged"}, {
---   pattern = {"*:v", "*:V", "*:\x16"},
---   callback = function()
---     vim.opt.list = true
---   end
--- })
--- vim.api.nvim_create_autocmd({"ModeChanged"}, {
---   pattern = {"v:n", "V:n", "\x16:n"},
---   callback = function()
---     vim.opt.list = false
---   end
--- })
+-- Enable the visibility of the characters
+opt.list = true
+
+-- Set the specific characters
+opt.listchars = "space:·,tab:» ,trail:·,extends:→,precedes:←,nbsp:␣"
+
+vim.api.nvim_create_autocmd({"ModeChanged"}, {
+  pattern = {"*:v", "*:V", "*:\x16"},
+  callback = function()
+    vim.opt.list = true
+  end
+})
+
+vim.api.nvim_create_autocmd({"ModeChanged"}, {
+  pattern = {"v:n", "V:n", "\x16:n"},
+  callback = function()
+    vim.opt.list = false
+  end
+})
+
 WK.add({
   { "Q", "<Nop>", { noremap = false } },
 })
+
 -- keymaps
 WK.add({
   {

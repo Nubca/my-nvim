@@ -6,17 +6,18 @@
 
 local M = {}
 
----Gets a 'ClientCapabilities' object, describing the LSP client capabilities
----Extends the object with capabilities provided by plugins.
+---Gets a 'ClientCapabilities' object for LSP servers
+---Updated to use blink.cmp instead of nvim-cmp
 ---@return lsp.ClientCapabilities
 function M.make_client_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- Add com_nvim_lsp capabilities
-  local cmp_lsp = require('cmp_nvim_lsp')
-  local cmp_lsp_capabilities = cmp_lsp.default_capabilities()
-  capabilities = vim.tbl_deep_extend('keep', capabilities, cmp_lsp_capabilities)
-  -- Add any additional plugin capabilities here.
-  -- Make sure to follow the instructions provided in the plugin's docs.
+  
+  -- Use blink.cmp to extend capabilities
+  local ok, blink = pcall(require, 'blink.cmp')
+  if ok then
+    return blink.get_lsp_capabilities(capabilities)
+  end
+  
   return capabilities
 end
 
